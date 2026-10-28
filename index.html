@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio de Repaso - MOD MANUAL MOD 3 NAIL ART Y DECORACIÓN PROFESIONAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ficde-azul-dark: #134252;
+            --ficde-azul-light: #2c5c6e;
+            --ficde-naranja: #e68161;
+            --ficde-naranja-hover: #ff9f85;
+            --tarjeta-bg: #f0f4f5;
+            --input-bg: #e2e8eb;
+            --texto-principal: #0f2d38;
+            --texto-secundario: #4a636e;
+            --verde-exito: #2e7d32;
+            --verde-bg: #c8e6c9;
+            --rojo-error: #c62828;
+            --naranja-bg: #ffe0b2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--ficde-azul-dark) 0%, #0a252e 100%);
+            min-height: 100vh;
+            color: var(--texto-principal);
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-img { height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+
+        .module-tag {
+            background: var(--ficde-naranja);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-card {
+            background: var(--tarjeta-bg);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-bottom: 6px solid var(--ficde-naranja);
+            margin-bottom: 30px;
+        }
+
+        .welcome-title {
+            color: var(--ficde-azul-dark);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .fede-avatar-large {
+            width: 140px; height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: var(--ficde-naranja);
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(230, 129, 97, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .fede-avatar-large:hover { transform: scale(1.1); }
+
+        .fede-avatar-large img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .block-card {
+            background: var(--tarjeta-bg);
+            padding: 30px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .block-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--ficde-naranja);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .block-icon {
+            font-size: 3rem; margin-bottom: 15px;
+            background: rgba(19, 66, 82, 0.1);
+            width: 70px; height: 70px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; color: var(--ficde-azul-dark);
+        }
+
+        .block-title { color: var(--ficde-azul-dark); font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+
+        .block-desc { 
+            color: var(--texto-secundario); 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .activity-screen {
+            display: none;
+            grid-template-columns: 280px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .activity-screen.active { display: grid; }
+
+        .tutor-sidebar {
+            background: var(--ficde-azul-light);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            position: sticky; top: 20px;
+        }
+
+        .tutor-bubble {
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: var(--ficde-azul-dark);
+            margin-top: 20px;
+            position: relative;
+            text-align: left;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .tutor-bubble::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            border-width: 0 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent rgba(255,255,255,0.95);
+            transform: translateX(-50%);
+        }
+
+        .activity-content {
+            background: var(--tarjeta-bg);
+            padding: 40px;
+            border-radius: 16px;
+            min-height: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .act-badge {
+            background: var(--ficde-naranja);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .act-title { font-size: 1.8rem; color: var(--ficde-azul-dark); margin: 15px 0; font-weight: 800; }
+
+        .act-instruction { 
+            font-size: 1.1rem; 
+            color: var(--texto-secundario); 
+            margin-bottom: 30px; 
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .student-input {
+            width: 100%;
+            height: 150px;
+            padding: 20px;
+            background: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--ficde-azul-dark);
+            transition: all 0.3s;
+        }
+
+        .student-input:focus { background: white; border-color: var(--ficde-naranja); outline: none; }
+
+        .fill-input {
+            border: none;
+            border-bottom: 2px solid var(--ficde-naranja);
+            background: transparent;
+            font-weight: 700;
+            color: var(--ficde-azul-dark);
+            text-align: center;
+            width: 150px;
+            font-size: 1.1rem;
+        }
+
+        .btn-action {
+            width: 100%;
+            padding: 18px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background: linear-gradient(90deg, var(--ficde-naranja), #ff9f85);
+            color: white;
+            box-shadow: 0 6px 20px rgba(230, 129, 97, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-action:hover { transform: translateY(-3px); }
+
+        .btn-back {
+            background: transparent;
+            color: var(--texto-secundario);
+            box-shadow: none;
+            border: 2px solid #ccc;
+            margin-top: 15px;
+        }
+
+        .btn-back:hover { background: #e0e0e0; color: var(--ficde-azul-dark); }
+
+        .traffic-row, .checklist-item {
+            background: white;
+            margin-bottom: 12px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .traffic-row:hover, .checklist-item:hover { border-color: var(--ficde-naranja); transform: translateX(5px); }
+
+        .traffic-btn {
+            width: 35px; height: 35px;
+            border-radius: 50%; border: 2px solid #ddd;
+            cursor: pointer;
+            opacity: 0.3;
+        }
+
+        .traffic-btn.active { opacity: 1; transform: scale(1.2); border-color: var(--ficde-azul-dark); }
+
+        .bg-green { background: #4CAF50; }
+
+        .bg-yellow { background: #FFC107; }
+
+        .bg-red { background: #f44336; }
+
+        .check-box {
+            width: 24px; height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .checklist-item.selected { border-color: var(--ficde-naranja); background: #fff5f0; }
+
+        .checklist-item.selected .check-box { background: var(--ficde-naranja); border-color: var(--ficde-naranja); color: white; }
+
+        .feedback-area {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            animation: slideUp 0.4s;
+        }
+
+        .feedback-success { background: var(--verde-bg); color: #1b5e20; border-left: 6px solid var(--verde-exito); }
+
+        .feedback-retry { background: var(--naranja-bg); color: #bf360c; border-left: 6px solid #ef6c00; }
+
+        .feedback-fail { background: #cfd8dc; color: #37474f; border-left: 6px solid #455a64; }
+
+        #musicToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--ficde-naranja);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .activity-screen { grid-template-columns: 1fr; }
+            .tutor-sidebar { display: flex; align-items: center; gap: 20px; }
+            .fede-avatar-large { width: 80px; height: 80px; }
+            .tutor-bubble::after { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AUDIOS MP3 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="chill-study-desk-focus-concentration-lofi-451180.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="saludoInicial" preload="auto" src="saludoinicial.mp3"></audio>
+    <audio id="mensaje1Ejercicios" preload="auto" src="mensaje1ejercicios.mp3"></audio>
+    <audio id="mensaje2Ejercicios" preload="auto" src="mensaje2ejercicios.mp3"></audio>
+    <audio id="mensaje3Ejercicios" preload="auto" src="mensaje3ejercicios.mp3"></audio>
+    <audio id="mensaje4Ejercicios" preload="auto" src="mensaje4ejercicios.mp3"></audio>
+    <audio id="respuestaCorrecta" preload="auto" src="respuestacorrecta.mp3"></audio>
+    <audio id="primerError" preload="auto" src="primererror.mp3"></audio>
+    <audio id="segundoError" preload="auto" src="segundoerror.mp3"></audio>
+    <audio id="loLograste" preload="auto" src="lolograste.mp3"></audio>
+
+    <audio id="hoverSound" preload="auto" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.m4a"></audio>
+    <audio id="clickSound" preload="auto" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.m4a"></audio>
+    <audio id="successSound" preload="auto" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.m4a"></audio>
+
+    <button id="musicToggle" onclick="toggleMusic()">🔇</button>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="FICDE" class="logo-img" onerror="this.style.display='none'; document.getElementById('altLogo').style.display='block'">
+                <h2 id="altLogo" style="display:none; color:white; font-weight:800;">FICDE</h2>
+            </div>
+            <div class="module-tag">Módulo: MANUAL MOD 3 NAIL ART Y DECORACIÓN PROFESIONAL</div>
+        </header>
+
+        <div id="selectionScreen">
+            <div class="welcome-card">
+                <div class="fede-avatar-large" onclick="playAudio('saludoInicial')">
+                    <img src="personaje.gif" alt="Fede">
+                </div>
+                <h1 class="welcome-title">Espacio de Repaso Interactivo</h1>
+                <p style="color: var(--texto-secundario); font-size: 1.1rem;">Donde el conocimiento se convierte en acción</p>
+            </div>
+
+            <div class="blocks-grid">
+                <div class="block-card" onclick="startModule('sintesis')">
+                    <div class="block-icon">🧠</div>
+                    <div class="block-title">Síntesis</div>
+                    <div class="block-desc">fundamentos del Nail Art, adaptación del diseño, teoría y armonías de color, proporción cromática, pincelería, técnicas y efectos, degradé, Baby Boomer y encapsulado.</div>
+                </div>
+
+                <div class="block-card" onclick="startModule('analisis')">
+                    <div class="block-icon">🔍</div>
+                    <div class="block-title">Análisis Crítico</div>
+                    <div class="block-desc">errores de aplicación y preparación, fallas de sellado y adherencia, problemas de color y contraste, defectos en efectos y técnicas, encapsulado y alteraciones de la arquitectura ungueal.</div>
+                </div>
+
+                <div class="block-card" onclick="startModule('escenarios')">
+                    <div class="block-icon">🎬</div>
+                    <div class="block-title">Escenarios</div>
+                    <div class="block-desc">selección y adaptación de diseños, armonía de colores, aplicación de efectos y decoraciones, combinación de técnicas y mantenimiento del Nail Art.</div>
+                </div>
+
+                <div class="block-card" onclick="startModule('practica')">
+                    <div class="block-icon">⚡</div>
+                    <div class="block-title">Práctica</div>
+                    <div class="block-desc">preparación de superficie, técnicas de trazado y difuminado, aplicación de cromo, encapsulado, strass, Cat Eye, foil, elementos 3D y sellado final.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="activityScreen" class="activity-screen">
+            <div class="tutor-sidebar">
+                <div class="fede-avatar-large" style="width: 100px; height: 100px; border-color: var(--ficde-naranja);" onclick="replayTutorMessage()">
+                    <img src="personaje.gif" alt="Fede">
+                </div>
+                <div style="flex:1;">
+                    <h3 style="color:var(--ficde-naranja); margin-bottom:5px;">Tutor Fede</h3>
+                    <div class="tutor-bubble" id="tutorMessage"></div>
+                </div>
+            </div>
+
+            <div class="activity-content" id="activityContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== GESTIÓN DE AUDIO MP3 =====
+        const audioFiles = {
+            saludoInicial: document.getElementById('saludoInicial'),
+            mensaje1: document.getElementById('mensaje1Ejercicios'),
+            mensaje2: document.getElementById('mensaje2Ejercicios'),
+            mensaje3: document.getElementById('mensaje3Ejercicios'),
+            mensaje4: document.getElementById('mensaje4Ejercicios'),
+            correcto: document.getElementById('respuestaCorrecta'),
+            error1: document.getElementById('primerError'),
+            error2: document.getElementById('segundoError'),
+            lolograste: document.getElementById('loLograste')
+        };
+
+        function playAudio(audioKey) {
+            if (audioFiles[audioKey]) {
+                audioFiles[audioKey].currentTime = 0;
+                audioFiles[audioKey].play().catch(err => console.log('Error al reproducir audio:', err));
+            }
+        }
+
+        const bgMusic = document.getElementById('bgMusic');
+        const clickSoundEl = document.getElementById('clickSound');
+        const successSoundEl = document.getElementById('successSound');
+        const hoverSoundEl = document.getElementById('hoverSound');
+
+        let musicOn = false;
+        let audioUnlocked = false;
+
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            Object.values(audioFiles).forEach(a => {
+                a.volume = 0;
+                const p = a.play();
+                if (p) p.then(() => { a.pause(); a.currentTime = 0; a.volume = 1; }).catch(()=>{});
+            });
+            audioUnlocked = true;
+        }
+
+        document.addEventListener('pointerdown', unlockAudio, { once: true });
+        document.addEventListener('keydown', unlockAudio, { once: true });
+
+        function toggleMusic() {
+            unlockAudio();
+            if (!musicOn) {
+                bgMusic.volume = 0.1;
+                bgMusic.play().catch(() => {});
+                document.getElementById('musicToggle').innerText = '🎵';
+            } else {
+                bgMusic.pause();
+                document.getElementById('musicToggle').innerText = '🔇';
+            }
+            musicOn = !musicOn;
+        }
+
+        function playSound(type) {
+            if (!audioUnlocked) return;
+            try {
+                if (type === 'click') { clickSoundEl.currentTime=0; clickSoundEl.volume=0.8; clickSoundEl.play().catch(()=>{}); }
+                if (type === 'success') { successSoundEl.currentTime=0; successSoundEl.volume=0.8; successSoundEl.play().catch(()=>{}); }
+                if (type === 'hover') { hoverSoundEl.currentTime=0; hoverSoundEl.volume=0.2; hoverSoundEl.play().catch(()=>{}); }
+            } catch (e) {}
+        }
+
+        function wireUiSounds() {
+            document.querySelectorAll('.block-card, .btn-action, .checklist-item, .traffic-row, .fede-avatar-large').forEach(el => {
+                if (el.dataset.sound === '1') return;
+                el.dataset.sound = '1';
+                el.addEventListener('mouseenter', () => playSound('hover'));
+                el.addEventListener('click', () => playSound('click'));
+            });
+        }
+
+        window.addEventListener('load', wireUiSounds);
+
+        // ===== NORMALIZACIÓN DE TEXTO =====
+        function normalizar(txt) {
+            return txt.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        // ===== ACTIVIDADES =====
+        const modules = {
+            sintesis: [
+                {
+                    type: 'text',
+                    badge: "Introducción al arte ungueal",
+                    title: "Concepto y objetivos",
+                    instruction: "Define el concepto de Nail Art destacando su propósito estético y profesional.",
+                    tutor: "Considera que la disciplina busca decorar y embellecer creando un diseño equilibrado y duradero.",
+                    explanation: "El Nail Art constituye una composición estética que requiere técnica precisa para lograr armonía sobre la uña.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["compos", "tecnic", "armoni", "nail", "consti", "esteti", "requie", "precis", "lograr", "define"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'text',
+                    badge: "Adaptación de diseños",
+                    title: "Criterios morfológicos",
+                    instruction: "Clasifica los factores y el porqué condicionan la elección del diseño.",
+                    tutor: "Analiza cómo la superficie disponible y el estilo personal orientan la selección de trazos y elementos.",
+                    explanation: "Evaluar la forma de la uña, su longitud y la superficie disponible garantiza una propuesta proporcional.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["forma", "longit", "superf", "evalua", "dispon", "garant", "propue", "propor", "clasif", "factor"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Rueda del color",
+                    title: "Clasificación cromática",
+                    instruction: "Selecciona los tres grupos de colores que conforman el círculo cromático según su origen de mezcla.",
+                    items: [
+                        { text: "Colores primarios fundamentales", correct: true },
+                        { text: "Colores secundarios por mezcla binaria", correct: true },
+                        { text: "Colores terciarios por combinación intermedia", correct: true },
+                        { text: "Colores acromáticos fluorescentes", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Busca las categorías básicas que van desde los tonos puros hasta las combinaciones intermedias.",
+                    explanation: "El círculo organiza los colores primarios, los secundarios resultantes y los terciarios intermedios."
+                },
+                {
+                    type: 'text',
+                    badge: "Armonías visuales",
+                    title: "Combinación de tonos",
+                    instruction: "Detalla las características de la armonía monocromática, análoga y complementaria en el diseño ungueal.",
+                    tutor: "Observa la diferencia entre usar variaciones de un mismo tono, colores vecinos o contrastes opuestos.",
+                    explanation: "Utilizar la gama monocromática aporta elegancia, la análoga continuidad y la complementaria contraste impactante.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["monocr", "analog", "comple", "utiliz", "gama", "aporta", "elegan", "contin", "contra", "impact"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: false,
+                    badge: "Proporción cromática",
+                    title: "Regla 60-30-10",
+                    instruction: "Completar la frase<br><br>La regla 60-30-10 distribuye la paleta asignando el sesenta por ciento al color _________, el treinta por ciento al __________ y el diez por ciento al de ______.",
+                    blanks: ["dominante", "secundario", "acento"],
+                    tutor: "Recuerda los porcentajes que balancean la base, el tono secundario y el detalle llamativo.",
+                    explanation: "Aplicar la proporción con tono dominante, acompañamiento secundario y acento de brillo equilibra el diseño."
+                },
+                {
+                    type: 'text',
+                    badge: "Pincelería profesional",
+                    title: "Control y ergonomía",
+                    instruction: "Expone los factores de presión, dirección e inclinación requeridos para dominar el trazo con pincel.",
+                    tutor: "Contempla cómo la fuerza ejercida sobre la punta y el ángulo de las cerdas modifican el grosor de la línea.",
+                    explanation: "Graduar la presión ejercida, guiar la dirección y mantener la inclinación correcta otorga definición.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["presio", "direcc", "inclin", "gradua", "ejerci", "guiar", "manten", "correc", "otorga", "defini"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Categorías decorativas",
+                    title: "Nivel técnico",
+                    instruction: "Identifica las tres técnicas pertenecientes al nivel de decoración básica para el control del pulso.",
+                    items: [
+                        { text: "Trazo de líneas y puntos", correct: true },
+                        { text: "Realización de francesitas", correct: true },
+                        { text: "Diseños geométricos simples", correct: true },
+                        { text: "Modelado tridimensional en alto relieve", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Agrupa los ejercicios iniciales indispensables para adquirir firmeza antes de pasar al nivel avanzado.",
+                    explanation: "Ejercitar líneas finas, elaborar francesitas y dibujar formas geométricas desarrolla el pulso profesional."
+                },
+                {
+                    type: 'text',
+                    badge: "Efectos de superficie",
+                    title: "Texturas y acabados",
+                    instruction: "Describe las propiedades visuales que aportan el glitter, los pigmentos, el foil y los geles de relieve.",
+                    tutor: "Analiza la diferencia entre destellos particulados, velos metalizados y láminas transferibles sobre la superficie.",
+                    explanation: "La aplicación de glitter añade brillo particulado, los pigmentos reflejos cromo y el foil destellos metalizados.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["glitte", "pigmen", "foil", "aplica", "anade", "brillo", "partic", "reflej", "cromo", "destel"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Transición de color",
+                    title: "Tonalidades difuminadas",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "El degradado logra una transición paulatina entre dos o más tonos sin líneas ni cortes visibles", color: "green" },
+                        { text: "El Baby Boomer combina prioritariamente colores neones intensos en la punta con negro en la base", color: "red" },
+                        { text: "La técnica de difuminado puede realizarse mediante esponja o pincel abanico sobre la capa adecuada", color: "green" },
+                        { text: "La capa de dispersión del esmalte debe eliminarse por completo antes de comenzar el difuminado", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Contrasta la combinación libre del degradado cromático con la sutileza difuminada del Baby Boomer clásico.",
+                    explanation: "Un degradado impecable exige una transición suave entre tonos usando la esponja o pincel."
+                },
+                {
+                    type: 'text',
+                    badge: "Estructuras protegidas",
+                    title: "Técnica de encapsulado",
+                    instruction: "Sintetiza el procedimiento de encapsulado e identifica los elementos decorativos aptos para quedar contenidos.",
+                    tutor: "Considera el depósito de flores secas, láminas o glitter cubiertos totalmente por un gel nivelador transparente.",
+                    explanation: "Ejecutar un encapsulado correcto resguarda diversos elementos bajo una capa de gel transparente y resistente.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["encaps", "elemen", "ejecut", "correc", "resgua", "divers", "bajo", "capa", "transp", "resist"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                }
+            ],
+            analisis: [
+                {
+                    type: 'text',
+                    badge: "Errores compositivos",
+                    title: "Sobrecarga de decoración",
+                    instruction: "Examina los problemas estéticos y funcionales que genera acumular exceso de elementos sobre la uña.",
+                    tutor: "Reflexiona sobre la pérdida de armonía visual, el aumento desmedido del volumen y la tendencia al desprendimiento.",
+                    explanation: "Incurrir en la sobrecarga decorativa altera el grosor natural rompiendo el equilibrio de la uña.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["sobrec", "grosor", "equili", "incurr", "decora", "altera", "natura", "rompie", "examin", "proble"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'text',
+                    badge: "Fallas de adherencia",
+                    title: "Deficiencias en preparación",
+                    instruction: "Evalúa el impacto de omitir el matificado superficial o dejar restos de polvo antes de aplicar el arte.",
+                    tutor: "Contempla cómo la capa oleosa o los residuos impiden que los geles decorativos y top coats se fijen adecuadamente.",
+                    explanation: "Omitir un matificado correcto y dejar polvo sobre la lámina provoca el levantamiento del diseño.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["matifi", "polvo", "levant", "omitir", "correc", "dejar", "lamina", "provoc", "diseno", "evalua"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Fallas en cristalería",
+                    title: "Desprendimiento de strass",
+                    instruction: "Escoge los errores comunes que provocan la caída prematura de piedras y aplicaciones metálicas.",
+                    items: [
+                        { text: "Pegar el strass sobre Top Coat ya catalizado sin gel de adherencia", correct: true },
+                        { text: "Omitir el sellado de los bordes perimetrales de la gema", correct: true },
+                        { text: "Cubrir totalmente la faceta superior de la piedra con gel opaco", correct: true },
+                        { text: "Anclar la piedra con gel de construcción denso curando en cabina", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Identifica las fallas de anclaje, la falta de refuerzo en los bordes y el exceso de producto que mata el brillo.",
+                    explanation: "Fijar piedras sin gel específico, descuidar los bordes o tapar el brillo causa su caída."
+                },
+                {
+                    type: 'text',
+                    badge: "Disonancia de color",
+                    title: "Falta de contraste",
+                    instruction: "Explica las consecuencias de seleccionar fondos y detalles con valores de intensidad idénticos.",
+                    tutor: "Analiza la pérdida de nitidez en las líneas y trazos cuando los tonos no generan suficiente separación visual.",
+                    explanation: "La falta de contraste entre el fondo y el trazo invalida la visibilidad del diseño realizado.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["contra", "fondo", "visibi", "falta", "trazo", "invali", "diseno", "realiz", "explic", "consec"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: false,
+                    badge: "Pérdida de brillo",
+                    title: "Alteración del efecto espejo",
+                    instruction: "Completar la frase<br><br>Aplicar el pigmento cromo sobre un Top Coat con capa de __________ o frotar con excesiva ______ produce un acabado veteado y opaco.",
+                    blanks: ["inhibición", "fuerza"],
+                    tutor: "Recuerda la necesidad de usar Top Coat sin capa pegajosa y pulir suavemente la superficie.",
+                    explanation: "Evitar la capa de inhibición y moderar la fuerza al pulir conserva el efecto espejo reluciente."
+                },
+                {
+                    type: 'text',
+                    badge: "Defectos en degradé",
+                    title: "Transiciones bruscas",
+                    instruction: "Juzga las causas técnicas que producen cortes y líneas marcadas al realizar la técnica de Baby Boomer.",
+                    tutor: "Observa cómo la falta de toque suave con la esponja o la descarga excesiva de pigmento arruina el esfumado.",
+                    explanation: "Generar cortes visibles demuestra un difuminado deficiente por mal control en el esponjado del producto.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["cortes", "difumi", "esponj", "genera", "visibl", "demues", "defici", "contro", "produc", "juzga"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Errores en transferencia",
+                    title: "Desprendimiento de foil",
+                    instruction: "Señala las tres fallas operativas que impiden la transferencia completa de la lámina de foil.",
+                    items: [
+                        { text: "Catalizado insuficiente del gel de transferencia especial", correct: true },
+                        { text: "Presión desigual o incompleta sobre la lámina metálica", correct: true },
+                        { text: "Retiro acelerado del papel protector sin enfriamiento", correct: true },
+                        { text: "Uso de gel de transferencia específico catalizado 60 segundos", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Busca los descuidos de curado, la falta de frotado firme y el despegue apresurado.",
+                    explanation: "Un catalizado incompleto, la presión irregular y la prisa al retirar provocan la transferencia fallida."
+                },
+                {
+                    type: 'text',
+                    badge: "Alteraciones en encapsulado",
+                    title: "Desbordes y grosor excesivo",
+                    instruction: "Argumenta por qué colocar elementos voluminosos cerca de los laterales destruye la arquitectura de la uña.",
+                    tutor: "Analiza cómo la decoración gruesa en los bordes exige capas masivas de gel que deforman los puntos de tensión.",
+                    explanation: "Ubicar objetos voluminosos cerca de los laterales deforma la arquitectura y genera bordes toscos.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["volumi", "latera", "arquit", "ubicar", "objeto", "cerca", "deform", "genera", "bordes", "toscos"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Distorsión magnética",
+                    title: "Fallas en efecto Cat Eye",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "Apoyar el imán directamente sobre el gel húmedo altera el diseño dejando marcas indeseadas", color: "green" },
+                        { text: "El movimiento de las partículas magnéticas se fija de manera definitiva únicamente tras catalizar en cabina", color: "green" },
+                        { text: "La distancia del imán no influye en la nitidez del reflejo de luz obtenido en la uña", color: "red" },
+                        { text: "Es recomendable trabajar las cinco uñas simultáneamente antes de acercar el imán a cada una", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Asocia la proximidad constante del imán con la fijación inmediata uña por uña en la lámpara.",
+                    explanation: "Evitar el contacto, mantener la distancia e ingresar de inmediato a cabina define el reflejo."
+                },
+                {
+                    type: 'text',
+                    badge: "Excesso en tres dimensiones",
+                    title: "Desbalance con gel 3D",
+                    instruction: "Sopesa los riesgos mecánicos de construir apliques en relieve que superen la altura del ápice central.",
+                    tutor: "Considera la vulnerabilidad del diseño frente a enganches accidentales en la ropa y palancas que fracturan la uña.",
+                    explanation: "Crear un relieve desproporcionado respecto al ápice multiplica los enganches y riesgo de fractura.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["reliev", "apice", "enganc", "crear", "despro", "respec", "multip", "riesgo", "fractu", "sopesa"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                }
+            ],
+            escenarios: [
+                {
+                    type: 'text',
+                    badge: "Cliente ejecutiva",
+                    title: "Estilizado en uñas cortas",
+                    instruction: "Plantea una propuesta de Nail Art para una profesional que posee uñas cortas y requiere elegancia discreta.",
+                    tutor: "Considera el uso de tonos nude con líneas verticales finas que aporten sensación visual de estilización.",
+                    explanation: "Elegir un estilo minimalista con líneas verticales estiliza la uña creando ilusión de longitud.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["minima", "lineas", "longit", "elegir", "estilo", "vertic", "estili", "creand", "ilusio", "plante"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Asesoría cromática",
+                    title: "Ajuste de tonos estridentes",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "La regla 60-30-10 permite integrar un color muy llamativo asignándole el diez por ciento como acento", color: "green" },
+                        { text: "Usar cinco colores neones puros en proporciones iguales garantiza siempre un resultado sofisticado", color: "red" },
+                        { text: "Un fondo neutro ayuda a equilibrar detalles de contraste intenso en diseños complejos", color: "green" },
+                        { text: "Los colores complementarios puros deben aplicarse siempre al cincuenta por ciento en cada uña", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Combina el uso de bases neutras con toques estratégicos de color intenso para mantener la armonía.",
+                    explanation: "Aplicar la regla 60-30-10 utilizando fondos neutros permite lucir acentos de color vibrantes."
+                },
+                {
+                    type: 'text',
+                    badge: "Resistencia en cristalería",
+                    title: "Clienta con trabajo manual",
+                    instruction: "Diseña una estrategia de anclaje para una clienta que solicita strass pero realiza tareas de alta fricción.",
+                    tutor: "Detalla el uso de gel de construcción en las bases y el sellado de los contornos rellenando recovecos.",
+                    explanation: "Asegurar el anclaje con gel denso y sellar la zona perimétrica evita que las cavidades enganchen.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["anclaj", "perime", "cavida", "asegur", "denso", "sellar", "zona", "evita", "enganc", "disena"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Estilo nupcial",
+                    title: "Baby Boomer con destellos",
+                    instruction: "Ilustra la combinación de técnicas recomendada para lograr un set elegante para una novia.",
+                    items: [
+                        { text: "Difuminado blanco milky sobre base nude rosada", correct: true },
+                        { text: "Aplicación sutil de microglitter en zona cuticular", correct: true },
+                        { text: "Encapsulado de hojas de oro pequeñas en uña acento", correct: true },
+                        { text: "Cobertura total de neon verde en todas las uñas", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Busca el equilibrio entre la sutileza de la transición rosada y pequeños destellos refinados.",
+                    explanation: "La transición milky sobre nude con microglitter y detalles en oro crea elegancia nupcial."
+                },
+                {
+                    type: 'text',
+                    badge: "Evento nocturno",
+                    title: "Efecto Cat Eye velvet",
+                    instruction: "Cómo se logra un efecto terciopelo magnético sobre base oscura en un set festivo.",
+                    tutor: "Analiza el uso de base negra y la manipulación del imán desde los cuatro laterales hacia el centro.",
+                    explanation: "Crear el efecto terciopelo direccionando el imán en los bordes otorga gran profundidad al tono.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["tercio", "iman", "profun", "crear", "efecto", "direcc", "bordes", "otorga", "gran", "tono"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Corrección de desgaste",
+                    title: "Cromo que se descascara",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "Sellando el borde libre con un primer sin ácido antes del Top Coat se previene el desprendimiento del cromo", color: "green" },
+                        { text: "Aplicar el pigmento directamente sobre la capa de inhibición pegajosa garantiza mayor brillo cromo", color: "red" },
+                        { text: "Encapsular el pigmento con una capa delgada de gel de base o nivelador prolonga su durabilidad", color: "green" },
+                        { text: "Eliminar el exceso de polvo de pigmento con bledo suave arruina el efecto metalizado obtenido", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Asocia el sellado con primer en puntas y la capa intermedia de gel base con la máxima durabilidad.",
+                    explanation: "Aplicar primer en el borde y sellar con gel base evita que el cromo se descascare."
+                },
+                {
+                    type: 'text',
+                    badge: "Arte botánico",
+                    title: "Encapsulado en uña almendrada",
+                    instruction: "Reúne las pautas para aplanar flores secas y colocarlas sin generar abultamientos en uñas almendradas.",
+                    tutor: "Indica la hidratación o prensado de la flor y su ubicación en la zona media de mayor volumen de gel.",
+                    explanation: "Es indispensable aplanar la flor, controlar su posición y cubrir con gel de nivelación transparente.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["aplana", "posici", "nivela", "indisp", "flor", "contro", "cubrir", "transp", "reune", "pautas"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Pasarela de moda",
+                    title: "Escultura 3D sutil",
+                    instruction: "Expón las condiciones de seguridad al crear flores en alto relieve para una exhibición o desfile.",
+                    items: [
+                        { text: "Mantener los pétalos bajos y redondeados sin aristas filosas", correct: true },
+                        { text: "Adherir la flor sobre una base con Top Coat previamente curado", correct: true },
+                        { text: "Utilizar cantidades gigantes de gel que sobrepasen el borde libre", correct: false },
+                        { text: "Asegurar la polimerización completa del producto en cabina", correct: true }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Considera formas suaves que no enganchen prendas y el curado completo de la masa de gel.",
+                    explanation: "Moldear pétalos bajos sobre base curada y garantizar el secado en cabina previene accidentes."
+                },
+                {
+                    type: 'text',
+                    badge: "Tendencia mixta",
+                    title: "Integración de técnicas",
+                    instruction: "Elige la forma de estructurar un set que combine efecto cromo, destello magnético y microilustraciones.",
+                    tutor: "Distribuye las técnicas en uñas específicas evitando aplicar todas las herramientas en un solo dedo.",
+                    explanation: "Aplicar la alternancia de acabados por uña preserva la técnica individual manteniendo la armonía.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["altern", "tecnic", "armoni", "aplica", "acabad", "preser", "indivi", "manten", "elige", "forma"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Service decorado",
+                    title: "Mantenimiento sin daño",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "Para renovar el arte se debe rebajar el Top Coat y el diseño con broca suave sin desgastar la base", color: "green" },
+                        { text: "Es obligatorio arrancar los cristales con alicate de corte haciendo palanca sobre la uña natural", color: "red" },
+                        { text: "Retirar el volumen de elementos 3D con torno facilita la nivelación previa al nuevo diseño", color: "green" },
+                        { text: "El mantenimiento de uñas decoradas exige limar la lámina natural hasta que sangre la matriz", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Enfatiza el retiro mecánico suave de la capa decorativa respetando la estructura del gel base.",
+                    explanation: "Rebajar el diseño con broca y retirar el volumen 3D permite renovar el set con seguridad."
+                }
+            ],
+            practica: [
+                {
+                    type: 'checklist',
+                    badge: "Preparación del lienzo",
+                    title: "Limpieza y matificado",
+                    instruction: "Instruye los tres pasos obligatorios para dejar la uña lista antes de trazar cualquier diseño de Nail Art.",
+                    items: [
+                        { text: "Desengrasar la superficie con alcohol o cleanser especializado", correct: true },
+                        { text: "Pasar suavemente una lima buffer de grano fino para retirar brillo", correct: true },
+                        { text: "Retirar minuciosamente todo residuo de polvo con cepillo o bledo", correct: true },
+                        { text: "Cubrir la uña con aceite de cutículas espeso antes de pintar", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Enfócate en la eliminación de la capa oleosa, la porosidad suave y la limpieza del polvillo.",
+                    explanation: "Desengrasar la uña, realizar el matificado con buffer y eliminar el polvo prepara el lienzo."
+                },
+                {
+                    type: 'text',
+                    badge: "Trazo de precisión",
+                    title: "Mano alzada con liner",
+                    instruction: "Prescribe la técnica paso a paso para ejecutar líneas extra finas utilizando el pincel liner largo.",
+                    tutor: "Detalla la carga mínima en la punta, el meñique como punto de anclaje y el deslizamiento fluido.",
+                    explanation: "Cargar una pequeña gota, fijar el apoyo del meñique y desplazar con velocidad constante logra líneas finas.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["gota", "apoyo", "veloci", "cargar", "pequen", "fijar", "meniqu", "despla", "consta", "logra"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'blanks',
+                    anyOrder: false,
+                    badge: "Difuminado nupcial",
+                    title: "Técnica de Baby Boomer",
+                    instruction: "Completar la frase<br><br>Para el Baby Boomer se aplica gel blanco en la punta, se difumina hacia el centro con _______ dando ligeros toques y se cubre con gel _________ rosado.",
+                    blanks: ["esponja", "nivelador"],
+                    tutor: "Piensa en la herramienta porosa para motear el borde y el gel traslúcido de unificación.",
+                    explanation: "Motear con la esponja la zona de unión y aplicar gel nivelador rosado suaviza el degradado."
+                },
+                {
+                    type: 'traffic',
+                    badge: "Acabado cromo",
+                    title: "Frotado de pigmento",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "El pigmento cromo se aplica inmediatamente al salir del cabina sobre Top Coat no-wipe aún tibio", color: "green" },
+                        { text: "Se debe frotar el pigmento utilizando un aplicador de silicona o esponja hasta lograr reflejo", color: "green" },
+                        { text: "Es necesario dejar la superficie llena de polvo suelto sin sacudir antes de poner el top final", color: "red" },
+                        { text: "El pigmento espejo funciona correctamente sobre esmalte tradicional secado únicamente al aire", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Destaca la importancia del Top Coat sin capa de inhibición y el pulido firme con aplicador.",
+                    explanation: "Aplicar sobre Top no-wipe, frotar con silicona y remover el polvo asegura el acabado espejo."
+                },
+                {
+                    type: 'text',
+                    badge: "Protocolo de inclusión",
+                    title: "Pasos del encapsulado",
+                    instruction: "Determina la secuencia correcta para encapsular elementos planos utilizando gel transparente.",
+                    tutor: "Pauta el pegado previo del elemento, la cobertura flotante con gota de gel y el curado en lámpara.",
+                    explanation: "Asegurar la adherencia del objeto, cubrir con gel de nivelación y completar el catalizado protege el arte.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["adhere", "nivela", "catali", "asegur", "objeto", "cubrir", "comple", "proteg", "arte", "determ"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Cristalería profesional",
+                    title: "Colocación de strass",
+                    instruction: "Guía los pasos técnicos para adherir una gema de cristal garantizando máxima fijación y brillo.",
+                    items: [
+                        { text: "Depositar una gota de gel de construcción en el punto deseado", correct: true },
+                        { text: "Asentar la gema presionando suavemente con el lápiz de cera", correct: true },
+                        { text: "Pincelar gel de sellado alrededor de la base sin tapar las facetas", correct: true },
+                        { text: "Cubrir toda la piedra con una capa gruesa de Top Coat mate", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Agrupa la gota de gel denso, la colocación precisa y el sellado de la base respetando las facetas.",
+                    explanation: "Colocar el gel denso, posicionar la gema y sellar el perímetro garantiza la fijación."
+                },
+                {
+                    type: 'text',
+                    badge: "Activación magnética",
+                    title: "Destello Cat Eye",
+                    instruction: "Pauta la ejecución de la técnica Ojo de Gato para direccionar las partículas brillantes antes del curado.",
+                    tutor: "Indica la aplicación del esmalte magnético, la posición del imán a 3 mm y el ingreso inmediato a la lámpara.",
+                    explanation: "Aproximar el imán sin tocar la uña, mantener la distancia e ingresar a cabina logra la fijación.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["iman", "distan", "fijaci", "aproxi", "tocar", "manten", "ingres", "cabina", "logra", "pauta"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'traffic',
+                    badge: "Transferencia metálica",
+                    title: "Aplicación de foil",
+                    instruction: "Marca afirmaciones correctas",
+                    items: [
+                        { text: "El gel para foil debe catalizarse en cabina LED/UV durante el tiempo exacto indicado por el fabricante", color: "green" },
+                        { text: "La lámina de foil se presiona con la cara opaca hacia abajo en contacto con la uña", color: "green" },
+                        { text: "La lámina de foil debe tirarse con fuerza hacia arriba apenas toca el gel sin frotar", color: "red" },
+                        { text: "El foil no requiere ninguna capa de Top Coat para protegerse del roce diario", color: "red" }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Enfatiza la posición de la cara opaca del foil y la presión uniforme antes de despegar.",
+                    explanation: "Curar el gel, presionar la cara opaca del foil y sellar con Top garantiza el traspaso."
+                },
+                {
+                    type: 'text',
+                    badge: "Modelado en relieve",
+                    title: "Técnica de gel 3D",
+                    instruction: "Compila la técnica para formar una figura en alto relieve utilizando gel esculpido o plastilina 3D.",
+                    tutor: "Detalla el tomado de la porción con espátula, el amoldado con pincel humedecido en cleanser y el secado.",
+                    explanation: "Dar forma a la esfera de gel, definir la textura con pincel y realizar el curado crea el 3D.",
+                    validation: (raw) => {
+                        const v = normalizar(raw);
+                        const roots = ["esfera", "textur", "curado", "forma", "defini", "pincel", "realiz", "crea", "compil", "tecnic"];
+                        return roots.filter(r => v.includes(r)).length >= 2;
+                    }
+                },
+                {
+                    type: 'checklist',
+                    badge: "Finalización del set",
+                    title: "Sellado y protección",
+                    instruction: "Agrupa las acciones indispensables para finalizar una manicura decorada asegurando su durabilidad.",
+                    items: [
+                        { text: "Aplicar Top Coat cubriendo la totalidad del diseño y sellando el borde libre", correct: true },
+                        { text: "Verificar que no queden relieves filosos o asperezas al tacto", correct: true },
+                        { text: "Limpiar la capa de inhibición si se utilizó un top tradicional con cleanser", correct: true },
+                        { text: "Limar en seco la superficie del diseño para quitar los excesos de producto", correct: false }
+                    ].sort(() => Math.random() - 0.5),
+                    tutor: "Abarca la cobertura total, el sellado de punta, el control al tacto y la limpieza final.",
+                    explanation: "Aplicar el Top Coat, verificar el sellado de puntas y limpiar con cleanser perfecciona el trabajo."
+                }
+            ]
+        };
+
+let currentModule = '';
+        let currentIndex = 0;
+        let attemptCount = 0;
+        let lastAudioModule = null;
+
+        // ===== MAPEO DE MÓDULOS A AUDIOS =====
+        const moduloAudioMap = {
+            'sintesis': 'mensaje1',
+            'analisis': 'mensaje2',
+            'escenarios': 'mensaje3',
+            'practica': 'mensaje4'
+        };
+
+        function startModule(id) {
+            playSound('click');
+            currentModule = id;
+            currentIndex = 0;
+            attemptCount = 0;
+            lastAudioModule = id;
+
+            // Reproducir el audio del módulo correspondiente
+            const audioKey = moduloAudioMap[id];
+            if (audioKey) {
+                playAudio(audioKey);
+            }
+
+            document.getElementById('selectionScreen').style.display = 'none';
+            document.getElementById('activityScreen').classList.add('active');
+
+            setTimeout(loadActivity, 300);
+        }
+
+        function loadActivity() {
+            attemptCount = 0;
+
+            if (currentIndex >= modules[currentModule].length) {
+                // Reproducir "lolograste.mp3" al terminar TODAS las preguntas
+                playAudio('lolograste');
+                playSound('success');
+                alert('¡Excelente! Completaste este bloque.');
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+                return;
+            }
+
+            const data = modules[currentModule][currentIndex];
+            const container = document.getElementById('activityContainer');
+
+            const msg = `Pregunta ${currentIndex + 1} de ${modules[currentModule].length}: ${data.tutor}`;
+            document.getElementById('tutorMessage').innerText = msg;
+
+            let html = `<span class="act-badge">${data.badge}</span>
+                        <h2 class="act-title">${data.title}</h2>
+                        <p class="act-instruction">${data.instruction}</p>`;
+
+            if (data.type === 'text') {
+                html += `<textarea id="txtInput" class="student-input" placeholder="Escribe tu respuesta con tus palabras..."></textarea>`;
+            } else if (data.type === 'blanks') {
+                html += `<div style="font-size:1.2rem; line-height:2.5;">`;
+                data.blanks.forEach((b, i) => {
+                    html += `${i + 1}. <input type="text" class="fill-input" data-ans="${b}"> <br>`;
+                });
+                html += `</div>`;
+            } else if (data.type === 'traffic') {
+                data.items.forEach((item, i) => {
+                    html += `<div class="traffic-row" id="row-${i}">
+                                <span>${item.text}</span>
+                                <div style="display:flex; gap:10px;">
+                                    <div class="traffic-btn bg-green" onclick="selTraffic(${i}, 'green')"></div>
+                                    <div class="traffic-btn bg-yellow" onclick="selTraffic(${i}, 'yellow')"></div>
+                                    <div class="traffic-btn bg-red" onclick="selTraffic(${i}, 'red')"></div>
+                                </div>
+                            </div>`;
+                });
+            } else if (data.type === 'checklist') {
+                data.items.forEach((item) => {
+                    html += `<div class="checklist-item" onclick="toggleCheck(this)" data-correct="${item.correct}">
+                                <div class="check-box"></div>
+                                <span>${item.text}</span>
+                            </div>`;
+                });
+            }
+
+            html += `<div id="feedback" class="feedback-area"></div>
+                     <button id="btnCheck" class="btn-action" onclick="validate()">Verificar respuesta</button>
+                     <button class="btn-action btn-back" onclick="location.reload()">Salir al menú</button>`;
+
+            container.innerHTML = html;
+            wireUiSounds();
+        }
+
+        let trafficAns = {};
+
+        function selTraffic(idx, color) {
+            trafficAns[idx] = color;
+            const row = document.getElementById(`row-${idx}`);
+            row.querySelectorAll('.traffic-btn').forEach(b => b.classList.remove('active'));
+            row.querySelector(`.bg-${color}`).classList.add('active');
+            playSound('click');
+        }
+
+        function toggleCheck(el) {
+            el.classList.toggle('selected');
+            el.querySelector('.check-box').innerText = el.classList.contains('selected') ? '✓' : '';
+
+            if (el.classList.contains('selected')) {
+                el.style.borderColor = 'var(--ficde-naranja)';
+                el.querySelector('.check-box').style.background = 'var(--ficde-naranja)';
+                el.querySelector('.check-box').style.borderColor = 'var(--ficde-naranja)';
+                el.querySelector('.check-box').style.color = 'white';
+            } else {
+                el.style.borderColor = 'transparent';
+                el.querySelector('.check-box').style.background = 'transparent';
+                el.querySelector('.check-box').style.borderColor = '#ccc';
+            }
+
+            playSound('click');
+        }
+
+        function validate() {
+            const data = modules[currentModule][currentIndex];
+            const feedback = document.getElementById('feedback');
+            let isCorrect = false;
+
+            if (data.type === 'text') {
+                const val = document.getElementById('txtInput').value;
+                isCorrect = data.validation(val);
+            } else if (data.type === 'blanks') {
+                const inputs = document.querySelectorAll('.fill-input');
+                let hits = 0;
+                let usedAnswers = [];
+                inputs.forEach(inp => {
+                    const v = normalizar(inp.value.trim());
+                    if (v.length > 0) {
+                        if (data.anyOrder) {
+                            const matchedIdx = data.blanks.findIndex((ans, idx) => {
+                                if (usedAnswers.includes(idx)) return false;
+                                const normAns = normalizar(ans.trim());
+                                return (normAns === v || (v.length > 1 && normAns.startsWith(v.slice(0, Math.max(2, Math.min(v.length, normAns.length))))));
+                            });
+                            if (matchedIdx !== -1) {
+                                hits++;
+                                usedAnswers.push(matchedIdx);
+                            }
+                        } else {
+                            const ans = normalizar(inp.dataset.ans.trim());
+                            if (ans === v || (v.length > 1 && ans.startsWith(v.slice(0, Math.max(2, Math.min(v.length, ans.length)))))) {
+                                hits++;
+                            }
+                        }
+                    }
+                });
+                isCorrect = (hits === data.blanks.length);
+            } else if (data.type === 'traffic') {
+                let hits = 0;
+                data.items.forEach((item, i) => { if (trafficAns[i] === item.color) hits++; });
+                isCorrect = (hits === data.items.length);
+            } else if (data.type === 'checklist') {
+                let correct = true;
+                document.querySelectorAll('.checklist-item').forEach(item => {
+                    const sel = item.classList.contains('selected');
+                    const should = item.dataset.correct === 'true';
+                    if (sel !== should) correct = false;
+                });
+                isCorrect = correct;
+            }
+
+            feedback.style.display = 'block';
+
+            if (isCorrect) {
+                playAudio('correcto');
+                playSound('success');
+                feedback.className = 'feedback-area feedback-success';
+                feedback.innerHTML = `<strong>¡Muy bien!</strong><br>${data.explanation}`;
+                document.getElementById('btnCheck').innerText = 'Siguiente pregunta →';
+                document.getElementById('btnCheck').onclick = () => { currentIndex++; loadActivity(); };
+            } else {
+                attemptCount++;
+
+                if (attemptCount < 2) {
+                    playAudio('error1');
+                    feedback.className = 'feedback-area feedback-retry';
+                    feedback.innerHTML = `<strong>Buen intento.</strong> Revisá tu respuesta. Pista: ${data.tutor}`;
+                } else {
+                    playAudio('error2');
+                    feedback.className = 'feedback-area feedback-fail';
+                    feedback.innerHTML = `<strong>No pasa nada, aprendamos juntos:</strong><br>${data.explanation}`;
+                    document.getElementById('btnCheck').innerText = 'Entendido, continuar →';
+                    document.getElementById('btnCheck').onclick = () => { currentIndex++; loadActivity(); };
+                }
+            }
+        }
+
+        function replayTutorMessage() {
+            // Replay del último audio de módulo reproducido
+            if (lastAudioModule) {
+                const audioKey = moduloAudioMap[lastAudioModule];
+                if (audioKey) {
+                    playAudio(audioKey);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
